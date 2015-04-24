@@ -10,7 +10,55 @@
 <title>bonnetjes printer</title>
 
 </head>
+
+
 <body>
-	bonnetjes printer
+
+<script>
+	function print(){
+		var nametitle = document.getElementById('nametitle').value;
+		var products = document.getElementById('products').value;
+		var toteng = document.getElementById('toteng').value;
+		var totnl = document.getElementById('totnl').value;
+		console.log(nametitle);
+		console.log(products);
+		console.log(toteng);
+		console.log(totnl);
+
+		var url = "/print/"+nametitle+"/"+products
+		var xmlhttp;
+
+		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp=new XMLHttpRequest();
+		}
+		else {// code for IE6, IE5
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+
+		xmlhttp.onreadystatechange=function(){
+			if (xmlhttp.readyState==4 && xmlhttp.status==200){
+				//callback(xmlhttp.responseText);
+			}
+		};
+
+		xmlhttp.open("GET",url,true);
+		xmlhttp.send();
+	}
+</script>	
+bonnetjes printer<br><br>
+Name Title: <input id="nametitle"><br><br><br><br>
+
+Products:<br>
+<TEXTAREA id="products"></TEXTAREA>
+<br><br>
+Totaal NL:<br>
+<TEXTAREA id="toteng"></TEXTAREA>
+
+<br><br>
+Total Eng:<br>
+<TEXTAREA id="totnl"></TEXTAREA>
+<br><br>
+<button OnClick="print();">print!</button>
+
 </body>
 </html>
